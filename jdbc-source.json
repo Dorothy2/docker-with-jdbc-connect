@@ -2,6 +2,9 @@
        "name": "jdbc_source_connector_mysql_01",
        "config": {
             "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+            "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+            "value.converter": "io.confluent.connect.avro.AvroConverter",
+            "value.converter.schema.registry.url": "http://schema-registry:8081",
             "connection.url": "jdbc:mysql://mysql:3306/kconnect",
             "connection.user": "dorothy",
             "connection.password": "sqluserpw",

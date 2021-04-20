@@ -98,7 +98,7 @@
         CONNECT_LOG4J_LOGGERS: org.apache.zookeeper=ERROR,org.I0Itec.zkclient=ERROR,org.reflections=ERROR
 
       volumes:
-        - - /c/Users/drifa/IntelliJProjects/Sandbox/docker-with-jdbc-connect/data:/data  
+        - /c/Users/drifa/IntelliJProjects/Sandbox/docker-with-jdbc-connect/data:/data  
 
       command:
         - bash
