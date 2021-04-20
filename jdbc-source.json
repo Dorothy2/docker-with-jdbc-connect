@@ -1,0 +1,13 @@
+{
+       "name": "jdbc_source_connector_mysql_01",
+       "config": {
+            "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+            "connection.url": "jdbc:mysql://mysql:3306/kconnect",
+            "connection.user": "dorothy",
+            "connection.password": "sqluserpw",
+            "topic.prefix": "mysql-01-",
+            "poll.interval.ms": 3600000,
+            "mode":"bulk"
+       }
+
+}
