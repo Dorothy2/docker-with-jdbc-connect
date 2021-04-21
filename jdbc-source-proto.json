@@ -12,9 +12,10 @@
             "table.whitelist": "CURRENCY_PROTO",
             "poll.interval.ms": 3600000,
             "mode":"bulk",
-            "transforms": "ValueToKey",
+            "transforms": "ValueToKey,extractKeyFromStruct",
             "transforms.ValueToKey.type": "org.apache.kafka.connect.transforms.ValueToKey",
-            "transforms.ValueToKey.fields": "PROVIDER_ID,CLIENT_ID,CRRNCY_CD"
-       }
+            "transforms.ValueToKey.fields": "COMPOSITE_KEY",
+            "transforms.extractKeyFromStruct.type":"org.apache.kafka.connect.transforms.ExtractField$Key",
+            "transforms.extractKeyFromStruct.field":"COMPOSITE_KEY"       }
 
 }
