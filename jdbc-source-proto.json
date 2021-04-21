@@ -1,0 +1,20 @@
+{
+       "name": "jdbc_source_connector_mysql_currency_proto",
+       "config": {
+            "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+            "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+            "value.converter": "io.confluent.connect.protobuf.ProtobufConverter",
+            "value.converter.schema.registry.url": "http://schema-registry:8081",
+            "connection.url": "jdbc:mysql://mysql:3306/kconnect",
+            "connection.user": "dorothy",
+            "connection.password": "sqluserpw",
+            "topic.prefix": "mysql-01-proto-",
+            "table.whitelist": "CURRENCY_PROTO",
+            "poll.interval.ms": 3600000,
+            "mode":"bulk",
+            "transforms": "ValueToKey",
+            "transforms.ValueToKey.type": "org.apache.kafka.connect.transforms.ValueToKey",
+            "transforms.ValueToKey.fields": "PROVIDER_ID,CLIENT_ID,CRRNCY_CD"
+       }
+
+}

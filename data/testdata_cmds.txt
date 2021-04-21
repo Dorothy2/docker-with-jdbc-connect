@@ -45,8 +45,8 @@ VALUES('VEB', 'Venezuelan Bolivar', 2, 'Y', null, 'VEB', null, 'N', 'N');
 INSERT INTO CURRENCY(CRRNCY_CD, CRRNCY_NAME, CALC_PRECISION, CRD_LOCK, AVGPRICE_ROUND_OVRD, ISO_CRRNCY_CD, CRRNCY_SEC_ID, EURO_FLAG, TRUNC_FLAG)
 VALUES('VEF', 'Venezuelan Bolivar', 2, 'Y', null, 'VEF', null, 'N', 'N');
 
-  
-CREATE USER 'debezium'@'%' IDENTIFIED WITH mysql_native_password BY 'dbz';  
+
+CREATE USER 'debezium'@'%' IDENTIFIED WITH mysql_native_password BY 'dbz';
 CREATE USER 'foobar'@'%' IDENTIFIED WITH mysql_native_password BY 'sqluserpw';
 
 GRANT USAGE ON *.* TO 'foobar'@'%';
@@ -57,6 +57,14 @@ SHOW GRANTS FOR 'foobar'@'%';
 
 curl -d @"jdbc-source.json" -H "Content-Type: application/json" -X POST http://localhost:8083/connectors
 
+curl -d @"jdbc-source-proto.json" -H "Content-Type: application/json" -X POST http://localhost:8083/connectors
+
 curl -s "http://localhost:8083/connectors?expand=info&expand=status
 
-curl -X DELETE http://localhost:8083/connectors/jdbc_source_connector_mysql_01
+curl -X DELETE http://localhost:8083/connectors/jdbc_source_connector_mysql_currency
+
+curl -X DELETE http://localhost:8083/connectors/jdbc_source_connector_mysql_currency_proto
+
+docker exec broker kafka-topics --delete --zookeeper zookeeper:2181 -topic mysql-01-CURRENCY
+
+docker exec broker kafka-topics --delete --zookeeper zookeeper:2181 -topic mysql-01-proto-CURRENCY_PROTO

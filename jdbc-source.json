@@ -1,5 +1,5 @@
 {
-       "name": "jdbc_source_connector_mysql_01",
+       "name": "jdbc_source_connector_mysql_currency",
        "config": {
             "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
             "key.converter": "org.apache.kafka.connect.storage.StringConverter",
@@ -8,9 +8,15 @@
             "connection.url": "jdbc:mysql://mysql:3306/kconnect",
             "connection.user": "dorothy",
             "connection.password": "sqluserpw",
-            "topic.prefix": "mysql-01-",
+            "topic.prefix": "mysql-01-avro-",
+            "table.whitelist": "CURRENCY",
             "poll.interval.ms": 3600000,
-            "mode":"bulk"
+            "mode":"bulk",
+            "transforms": "copyIdToKey,extractKeyFromStruct",
+            "transforms.copyIdToKey.type": "org.apache.kafka.connect.transforms.ValueToKey",
+            "transforms.copyIdToKey.fields": "CRRNCY_CD",
+            "transforms.extractKeyFromStruct.type":"org.apache.kafka.connect.transforms.ExtractField$Key",
+            "transforms.extractKeyFromStruct.field":"CRRNCY_CD"
        }
 
 }
