@@ -12,9 +12,9 @@
             "table.whitelist": "CURRENCY",
             "poll.interval.ms": 3600000,
             "mode":"bulk",
-            "transforms": "copyIdToKey,extractKeyFromStruct",
-            "transforms.copyIdToKey.type": "org.apache.kafka.connect.transforms.ValueToKey",
-            "transforms.copyIdToKey.fields": "CRRNCY_CD",
+            "transforms": "ValueToKey,extractKeyFromStruct",
+            "transforms.ValueToKey.type": "org.apache.kafka.connect.transforms.ValueToKey",
+            "transforms.ValueToKey.fields": "CRRNCY_CD",
             "transforms.extractKeyFromStruct.type":"org.apache.kafka.connect.transforms.ExtractField$Key",
             "transforms.extractKeyFromStruct.field":"CRRNCY_CD"
        }

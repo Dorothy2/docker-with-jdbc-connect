@@ -1,0 +1,16 @@
+{
+       "name": "jdbc_sink_connector_mysql_currency_proto",
+       "config": {
+            "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+            "tasks.max": "1",
+            "topics": "mysql_01_proto_CURRENCY_PROTO",
+            "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+            "value.converter": "io.confluent.connect.protobuf.ProtobufConverter",
+            "value.converter.schema.registry.url": "http://schema-registry:8081",
+            "connection.url": "jdbc:mysql://mysql:3306/kconnect",
+            "auto.create": "true",
+            "connection.user": "dorothy",
+            "connection.password": "sqluserpw",
+            "table.name.format": "kafka_mysql_01_proto_CURRENCY_PROTO"
+      }
+}

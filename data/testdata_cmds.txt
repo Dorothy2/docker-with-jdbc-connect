@@ -59,11 +59,15 @@ curl -d @"jdbc-source.json" -H "Content-Type: application/json" -X POST http://l
 
 curl -d @"jdbc-source-proto.json" -H "Content-Type: application/json" -X POST http://localhost:8083/connectors
 
+curl -d @"jdbc-sink-proto.json" -H "Content-Type: application/json" -X POST http://localhost:8083/connectors
+
 curl -s "http://localhost:8083/connectors?expand=info&expand=status
 
 curl -X DELETE http://localhost:8083/connectors/jdbc_source_connector_mysql_currency
 
 curl -X DELETE http://localhost:8083/connectors/jdbc_source_connector_mysql_currency_proto
+
+curl -X DELETE http://localhost:8083/connectors/jdbc_sink_connector_mysql_currency_proto
 
 docker exec broker kafka-topics --delete --zookeeper zookeeper:2181 -topic mysql-01-CURRENCY
 
